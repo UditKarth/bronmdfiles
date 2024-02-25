@@ -1,4 +1,4 @@
-# dotNET (.NET) Development Hackathon Quick Start Guide
+# dotNET (.NET) Development Quick Start Guide
 .NET is a free, cross-platform, open-source developer platform for building many different types of applications. With .NET, you can use multiple languages, editors, and libraries to build web, mobile, desktop, games, and IoT applications. This guide will focus on .NET Core for building web applications and APIs, ideal for hackathons.
 
 ## Prerequisites
