@@ -1,0 +1,79 @@
+# .NET Development Hackathon Quick Start Guide
+.NET is a free, cross-platform, open-source developer platform for building many different types of applications. With .NET, you can use multiple languages, editors, and libraries to build web, mobile, desktop, games, and IoT applications. This guide will focus on .NET Core for building web applications and APIs, ideal for hackathons.
+
+## Prerequisites
+Ensure you have the .NET SDK (Software Development Kit) installed. The SDK includes everything you need to build and run .NET applications. To verify your installation, open your terminal or command prompt and run:
+```
+dotnet --version
+```
+If it hasn't been installed, download a version for your OS at the official .NET website (https://dotnet.microsoft.com/en-us/download)
+
+## Creating a New .NET Project
+.NET Core CLI (Command Line Interface) provides a fast way to initialize a new project. For a web application, you might start with a web API or an MVC project. To create a new project, use:
+
+For a Web API project:
+```
+dotnet new webapi -o MywebAPIProject
+
+```
+For a MVC project: 
+```
+dotnet new mvc -o MyMVCProject
+```
+
+## Running Your Project
+Navigate to your project directory and run the application with:
+
+```
+cd MyHackathonProject
+dotnet run
+```
+This command compiles and starts your application. By default, it will be accessible at http://localhost:5000 for HTTP and https://localhost:5001 for HTTPS.
+
+## Understanding the Project Structure
+A .NET Core project has a simple and understandable structure, with the Program.cs and Startup.cs (for ASP.NET Core apps) being central to how your app starts and configures services and the app's request pipeline.
+
+- Program.cs: The entry point for the application, sets up the web host which will host the app.
+- Startup.cs: Contains configurations and services for the app. This is where you configure things like MVC, Entity Framework, identity services, etc.
+
+## Adding NuGet Packages
+NuGet is the package manager for .NET. You can add a package to your project using the .NET CLI with:
+```
+dotnet add package <Package_Name>
+```
+Replace '<Package_Name>' with the name of the package you want to add. For example, to add Entity Framework Core, you might run:
+```
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+```
+
+## Entity Framework Core
+Entity Framework Core is a popular ORM (Object-Relational Mapper) for .NET. To use it, add the necessary package and create your data models as C# classes. Then, create a DbContext class and add it to the service container in Startup.cs.
+```
+services.AddDbContext<MyDbContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("MyDatabase")));
+```
+You can use migrations to create and update your database schema:
+```
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+## Building and Testing
+Build your project to compile the application:
+```
+dotnet build
+```
+Use the .NET testing tools to run unit tests in your project:
+```
+dotnet test
+```
+## Deploying Your Application
+For hackathons, you might want to deploy your application quickly. Consider containerizing your app with Docker and deploying it to a cloud service like Azure, AWS, or Heroku. The .NET CLI can publish your app for deployment:
+
+```
+dotnet publish -c Release
+```
+## Additional Tips
+- ASP.NET Core Identity: For authentication and authorization, consider using ASP.NET Core Identity.
+- SignalR: For real-time web functionality, use ASP.NET Core SignalR.
+- Blazor: For building interactive web UIs with C#, consider using Blazor.
+- Performance: Keep an eye on performance, especially in hackathons where you need to develop fast. Utilize ASP.NET Core's built-in performance features like response caching and middleware compression.
